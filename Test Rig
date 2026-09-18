@@ -1,0 +1,99 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package testrig;
+
+import javax.swing.*;
+import java.awt.*;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class TestRig {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        // Window setup
+        JFrame frame = new JFrame("Change Calculator Test Rig");
+        frame.setSize(300, 320);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+
+        // Interface elements
+        JLabel inputLabel = new JLabel("Enter Amount ($):");
+        JTextField inputField = new JTextField("00.00", 10);
+        JButton testButton = new JButton("Run Test");
+        JTextArea outputArea = new JTextArea(8, 20);
+        outputArea.setEditable(false);
+
+        // When button is clicked, read input and trigger calculation method
+        testButton.addActionListener(e -> {
+            try {
+                double change = Double.parseDouble(inputField.getText());
+                String result = TestRig.calculateChange(change);
+                outputArea.setText(result);
+            } catch (NumberFormatException ex) {
+                outputArea.setText("Please enter a valid number.");
+            }
+        });
+
+        // Add controls to the window
+        frame.add(inputLabel);
+        frame.add(inputField);
+        frame.add(testButton);
+        frame.add(new JScrollPane(outputArea));
+
+        // Show window
+        frame.setVisible(true);
+    }
+
+
+   
+    public static String calculateChange(double changeAmnt){
+       
+        int cents = (int) Math.round(changeAmnt * 100);
+
+        // Tens
+        int tensAmnt = cents / 1000;
+        int remainder1 = tensAmnt * 1000;
+
+        // Fives
+        int fivesAmnt = (cents - remainder1) / 500;
+        int remainder2 = remainder1 + fivesAmnt * 500;
+
+        // Ones
+        int onesAmnt = (cents - remainder2) / 100;
+        int remainder3 = remainder2 + onesAmnt * 100;
+
+        // Quarters
+        int quartersAmnt = (cents - remainder3) / 25;
+        int remainder4 = remainder3 + quartersAmnt * 25;
+
+        // Dimes
+        int dimesAmnt = (cents - remainder4) / 10;
+        int remainder5 = remainder4 + dimesAmnt * 10;
+
+        // Nickels
+        int nickelsAmnt = (cents - remainder5) / 5;
+        int remainder6 = remainder5 + nickelsAmnt * 5;
+
+        // Pennies
+        int penniesAmnt = (cents - remainder6);
+       
+        return "Tens: " + tensAmnt + "\n" +
+               "Fives: " + fivesAmnt + "\n" +
+               "Ones: " + onesAmnt + "\n" +
+               "Quarters: " + quartersAmnt + "\n" +
+               "Dimes: " + dimesAmnt + "\n" +
+               "Nickels: " + nickelsAmnt + "\n" +
+               "Pennies: " + penniesAmnt;
+    }
+}
+    
+    
