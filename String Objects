@@ -1,0 +1,39 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package stringobjects;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class StringObjects {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+      
+        //creating the string varaible
+        String name = "Sammy Weyer";
+
+        //including the outer quotations
+        System.out.println("My name is \"" + name + "\"");
+        //detmining the length of my name
+        System.out.println("My name length is " + name.length());
+        //converting my name into UPPERCASE notation
+        System.out.println("My name in upper case is \"" + name.toUpperCase() + "\"");
+        //converting my name into lowercase notation
+        System.out.println("My name in lower case is \"" + name.toLowerCase() + "\"");
+        //ordering to print character 0, the first letter of my name
+        System.out.println("The first letter in my name is \"" + name.charAt(0) + "\"");
+        //ordering to print the last letter of my name
+        System.out.println("The last letter in my name is \"" + name.charAt(name.length() - 1) + "\"");
+        //determinging the index of the space: the location of the space between my first and last name (first letter = 0)
+        System.out.println("The index of the space between the names is " + name.indexOf(" "));
+
+    }
+}
