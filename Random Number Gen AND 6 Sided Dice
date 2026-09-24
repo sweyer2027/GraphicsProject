@@ -1,0 +1,83 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.random_number_and_6_sided_dice;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class RANDOM_NUMBER_AND_6_SIDED_DICE {
+
+    private static final Random random = new Random();
+
+    // Generates a random phone number
+    public static String generatePhoneNumber() {
+
+        // First 3 digits: 0 through 7
+        StringBuilder part1 = new StringBuilder();
+
+        for (int i = 0; i < 3; i++) {
+            part1.append(random.nextInt(8));
+        }
+
+        // Second 3 digits: 000 through 655
+        int part2Num = random.nextInt(656);
+        String part2 = String.format("%03d", part2Num);
+
+        // Last 4 digits: 0000 through 9999
+        int part3Num = random.nextInt(10000);
+        String part3 = String.format("%04d", part3Num);
+
+        return part1.toString() + "-" + part2 + "-" + part3;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        String input = "";
+
+        while (!input.equals("-1")) {
+
+            System.out.println("Enter 'p' for a phone number.");
+            System.out.println("Enter 'r' to roll the die.");
+            System.out.println("Enter '-1' to stop.");
+            System.out.print("Action: ");
+
+            input = scan.nextLine().trim();
+
+            // Press p to generate a phone number
+            if (input.equalsIgnoreCase("p")) {
+
+                String phoneNumber = generatePhoneNumber();
+                System.out.println("Generated Number: " + phoneNumber);
+                System.out.println();
+
+            // Press r to roll the 6-sided die
+            } else if (input.equalsIgnoreCase("r")) {
+
+                int num1 = random.nextInt(6);
+                System.out.println("You rolled a " + (num1 + 1));
+                System.out.println();
+
+            // Press -1 to stop
+            } else if (input.equals("-1")) {
+
+                System.out.println("Program stopped.");
+
+            // Anything else
+            } else {
+
+                System.out.println("Please enter 'p', 'r', or '-1'.");
+                System.out.println();
+            }
+        }
+
+        scan.close();
+    }
+}
