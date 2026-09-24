@@ -1,0 +1,60 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package phonenumbergenerator;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class PhoneNumberGenerator {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+   
+    private static final Random random = new Random();
+
+    public static String generatePhoneNumber() {
+        // Part 1: First 3 digits (0-7 allowed, no 8 or 9)
+        StringBuilder part1 = new StringBuilder();
+        for (int i = 0; i < 3; i++) {
+            part1.append(random.nextInt(8)); // Generates 0 through 7
+        }
+
+        // Part 2: Middle 3 digits (000 to 655)
+        int part2Num = random.nextInt(656); // 0 to 655 inclusive
+        String part2 = String.format("%03d", part2Num);
+
+        // Part 3: Last 4 digits (0000 to 9999)
+        int part3Num = random.nextInt(10000); // 0 to 9999 inclusive
+        String part3 = String.format("%04d", part3Num);
+
+        return part1.toString() + "-" + part2 + "-" + part3;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type 'p' and press Enter to generate a new number.");
+
+        while (true) {
+            System.out.print("Action: ");
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("p")) {
+                String phoneNumber = generatePhoneNumber();
+                System.out.println("Generated Number: " + phoneNumber + "\n");
+            } else {
+                System.out.println("restart and type p");
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}
