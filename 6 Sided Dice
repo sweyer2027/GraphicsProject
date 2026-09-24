@@ -1,0 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.sideddice;
+
+/**
+ *
+ * @author sweyer2027
+ */
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class App {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       
+        Scanner scan = new Scanner(System.in);//add scanner
+        String r = "r";
+        Random generator = new Random(); //add random # generator
+        while (!r.equals("-1")){
+            System.out.println("Enter any letter to roll the die. " + "Enter -1 to stop.");
+            r = scan.next();//this just means that it scans when a letter is entered
+            int num1; //create an integer for the number
+            num1 = generator.nextInt(6); //creates a range 0 through 5
+            System.out.println("You rolled a " + (num1 + 1)); //adding 1 to make it a range of 1 through 6
+        }
+    }
+   
+}
