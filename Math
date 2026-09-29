@@ -1,0 +1,93 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license  // NetBeans license template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template  // NetBeans class template
+ */
+package math;  // Defines the package for this class
+
+import java.util.Scanner;  // Imports Scanner for user input
+import java.util.Random;  // Imports Random for generating random values
+
+/**
+ *
+ * @author sweyer2027  // Identifies the author
+ */
+public class Math {  // Defines the Math class
+
+    /**
+     * @param args the command line arguments  // Describes the main method parameter
+     */
+    public static void main(String[] args) {  // Starts the main method
+        Random random = new Random();  // Creates a random number generator
+        Scanner input = new Scanner(System.in);  // Creates a Scanner for keyboard input
+        int number = random.nextInt(91);  // Generates a random integer from 0 to 90
+
+        double radians = java.lang.Math.toRadians(number);  // Converts degrees to radians
+        double sine = java.lang.Math.sin(radians);  // Calculates the sine
+        double cosine = java.lang.Math.cos(radians);  // Calculates the cosine
+        double tangent = java.lang.Math.tan(radians);  // Calculates the tangent
+
+        System.out.println("Number: " + number  // Prints the random number
+                + " Sine: " + roundAvoid(sine, 3)  // Prints the rounded sine
+                + " Cosine: " + roundAvoid(cosine, 3)  // Prints the rounded cosine
+                + " Tangent: " + roundAvoid(tangent, 3));  // Prints the rounded tangent
+
+     
+        double radius = 1.0 + (20.0 - 1.0) * random.nextDouble();  // Generates a random radius
+
+        double circleArea = java.lang.Math.PI * java.lang.Math.pow(radius, 2);  // Calculates circle area
+        double sphereVolume = (4.0 / 3.0) * java.lang.Math.PI  // Starts calculating sphere volume
+                * java.lang.Math.pow(radius, 3);  // Completes the sphere volume calculation
+
+        System.out.println();  // Prints a blank line
+        System.out.println("Radius: " + roundAvoid(radius, 3));  // Prints the rounded radius
+        System.out.println("Area: " + roundAvoid(circleArea, 3));  // Prints the rounded circle area
+        System.out.println("Sphere Volume: " + roundAvoid(sphereVolume, 3));  // Prints the rounded sphere volume
+
+     
+        double largeNumber = 100000000.0  // Sets the minimum large number
+                + (100000000000.0 - 100000000.0) * random.nextDouble();  // Generates a random large number
+
+        double squareRoot = java.lang.Math.sqrt(largeNumber);  // Calculates the square root
+        double naturalLog = java.lang.Math.log(largeNumber);  // Calculates the natural logarithm
+        double log10 = java.lang.Math.log10(largeNumber);  // Calculates the base-10 logarithm
+
+        System.out.println();  // Prints a blank line
+        System.out.println("Large Number: " + roundAvoid(largeNumber, 5));  // Prints the large number
+        System.out.println("Square Root: " + roundAvoid(squareRoot, 5));  // Prints the square root
+        System.out.println("Natural Log: " + roundAvoid(naturalLog, 5));  // Prints the natural logarithm
+        System.out.println("Log10: " + roundAvoid(log10, 5));  // Prints the base-10 logarithm
+
+       
+        double speedOfLight = 299792458.0;  // Stores the speed of light
+
+        double massKg = largeNumber  // Starts calculating mass in kilograms
+                / java.lang.Math.pow(speedOfLight, 2);  // Uses E=mc² to calculate mass
+
+        double massGrams = massKg * 1000.0;  // Converts kilograms to grams
+
+        System.out.println();  // Prints a blank line
+        System.out.println("Mass Required in Grams: " + massGrams);  // Prints the mass in grams
+
+       
+        System.out.println();  // Prints a blank line
+        System.out.print("Enter a real number: ");  // Prompts the user for a real number
+        double userValue = input.nextDouble();  // Reads the user's real number
+
+        System.out.print("Enter an integer: ");  // Prompts the user for an integer
+        int exponent = input.nextInt();  // Reads the user's integer
+
+        System.out.print("Enter number of decimal places: ");  // Prompts for decimal places
+        int decimalPlaces = input.nextInt();  // Reads the number of decimal places
+
+        double answer = java.lang.Math.pow(userValue, exponent);  // Raises the number to the given exponent
+
+        System.out.println("Answer: " + roundAvoid(answer, decimalPlaces));  // Prints the rounded answer
+
+        input.close();  // Closes the Scanner
+    }
+
+    public static double roundAvoid(double value, int places) {  // Defines a method for rounding numbers
+        double scale = java.lang.Math.pow(10, places);  // Calculates the rounding scale
+        return java.lang.Math.round(value * scale) / scale;  // Rounds and returns the value
+    }
+}
