@@ -1,0 +1,102 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package number_format_assignment;
+
+/**
+ *
+ * @author sweyer2027
+ */
+
+import java.util.Scanner;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class NUMBER_FORMAT_ASSIGNMENT {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+
+        int totalStudents; // Total number of students
+        int girls; // Number of girls
+        int boys; // Number of boys
+
+        System.out.print("Enter the total number of students: ");
+        totalStudents = scan.nextInt();
+
+        System.out.print("Enter the number of girls: ");
+        girls = scan.nextInt();
+
+        boys = totalStudents - girls; // Calculate number of boys
+
+        NumberFormat percentFormat = NumberFormat.getPercentInstance();
+        percentFormat.setMaximumFractionDigits(2);// Show up to 2 decimal places
+
+        double girlsPercent = (double) girls / totalStudents; // Calculate girls' percentage
+        double boysPercent = (double) boys / totalStudents;// Calculate boys' percentage
+
+        System.out.println("\nGirls: " + percentFormat.format(girlsPercent));
+        System.out.println("Boys: " + percentFormat.format(boysPercent));
+
+
+        double dollars; // Amount in US dollars
+        double pounds; // Amount in British pounds
+        double euros; // Amount in euros
+
+        System.out.print("\nEnter the amount of money in US Dollars: $");
+        dollars = scan.nextDouble();
+
+        pounds = dollars * 0.75;// $1 = £0.75
+        euros = dollars * 0.86;// $1 = €0.86
+
+        NumberFormat poundFormat =
+                NumberFormat.getCurrencyInstance(Locale.UK);// British currency format
+
+        NumberFormat euroFormat =
+                NumberFormat.getCurrencyInstance(Locale.GERMANY);// Euro currency format
+
+        System.out.println("\nExchange rate: $1 = £0.75");
+        System.out.println("British Pounds: " + poundFormat.format(pounds));
+
+        System.out.println("\nExchange rate: $1 = €0.86");
+        System.out.println("Euros: " + euroFormat.format(euros));
+
+
+        int decimalPlaces;// Number of decimal places for Pi
+
+        System.out.print("\nEnter an integer from 0 to 15: ");
+        decimalPlaces = scan.nextInt();
+
+        if (decimalPlaces >= 0 && decimalPlaces <= 15)
+        {
+            DecimalFormat piFormat =
+                    new DecimalFormat("0." + "0".repeat(decimalPlaces)); // Format Pi
+
+            System.out.println("Pi: " + piFormat.format(Math.PI));
+        }
+        else
+        {
+            System.out.println("Invalid number. Please enter a number from 0 to 15.");
+        }
+
+
+        double randomNumber = ThreadLocalRandom.current().nextDouble(
+                100000000.0, 999e18); // Generate random number
+
+        DecimalFormat bigNumberFormat =
+                new DecimalFormat("#,###.###############");// Prevent scientific notation
+
+        System.out.println("\nRandom number: "
+                + bigNumberFormat.format(randomNumber));
+
+        scan.close();                         
+    }
+    
+}
