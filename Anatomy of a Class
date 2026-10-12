@@ -1,0 +1,139 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package anatomy_of_a_class;
+
+/**
+ *
+ * @author sweyer2027
+ */
+
+// 1) What is the difference between a class and an object?
+
+//A class is a blueprint that defines the structure and behaviors that objects created from it will have. 
+//No memory space for instance data is occupied. 
+//An object is an instance of a class that contains actual values for the attributes defined by the class. Memory is allocated.
+
+// 2) What happens when you pass an object to a print or println method?
+
+//When you pass an object to a print or println method, Java automatically calls the object's toString() method to get text to display. 
+//If you created a custom toString() method, it prints your custom text; otherwise, it prints a default string showing the object's class name and memory address.
+
+//3) What is the scope of a variable in a method? In a class?
+//A variable declared inside a method exists only while that method is running and can only be accessed within that specific method. 
+//A variable declared inside a class exists as long as the object exists and can be accessed by any method within that class.
+
+
+public class Anatomy_of_a_Class {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        // Create a base car to test the class
+        Car testCar = new Car();
+
+        testCar.setCarBrand("Base Car");
+        testCar.setEnginePower(100);
+        testCar.setMaxSpeed(110.0);
+        testCar.setPrice(20000.00);
+
+        System.out.println(testCar);
+        System.out.println();
+
+        // Create the four requested cars
+        Car vwBug = new Car("VW Bug", 60, 85.0, 25000.00);
+        Car toyotaPrius = new Car("Toyota Prius", 194, 112.0, 28000.00);
+        Car bmwI8 = new Car("BMW i8", 369, 155.0, 147500.00);
+        Car teslaModel3 = new Car("Tesla Model 3", 283, 125.0, 38990.00);
+
+        // Print the details of each car
+
+        System.out.println(vwBug);
+        System.out.println();
+
+        System.out.println(toyotaPrius);
+        System.out.println();
+
+        System.out.println(bmwI8);
+        System.out.println();
+
+        System.out.println(teslaModel3);
+    }
+
+}
+
+// Car class
+class Car {
+
+    // Instance variables
+    private String carBrand;
+    private int enginePower;
+    private double maxSpeed;
+    private double price;
+
+    // Default constructor
+    public Car() {
+        carBrand = "Unknown";
+        enginePower = 0;
+        maxSpeed = 0.0;
+        price = 0.0;
+    }
+
+    // Constructor with parameters
+    public Car(String carBrand, int enginePower,
+               double maxSpeed, double price) {
+        this.carBrand = carBrand;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.price = price;
+    }
+
+    // Getter and setter for carBrand
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(String carBrand) {
+        this.carBrand = carBrand;
+    }
+
+    // Getter and setter for enginePower
+    public int getEnginePower() {
+        return enginePower;
+    }
+
+    public void setEnginePower(int enginePower) {
+        this.enginePower = enginePower;
+    }
+
+    // Getter and setter for maxSpeed
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    // Getter and setter for price
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Car Brand: " + carBrand
+                + "\nEngine Power: " + enginePower + " HP"
+                + "\nMaximum Speed: " + maxSpeed + " MPH"
+                + "\nPrice: $" + String.format("%,.2f", price);
+    }
+
+}
