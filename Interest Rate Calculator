@@ -1,0 +1,105 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package interest_rate_calculator;
+
+import java.util.Scanner;
+import java.text.NumberFormat;
+
+/**
+ * Main class for the interest rate calculator.
+ * Gets the loan amount and repayment period from the user
+ * and displays the monthly payment and total amount repaid.
+ *
+ * @author sweyer2027
+ */
+public class Interest_Rate_Calculator {
+
+    /**
+     * Main method - program entry point.
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        // Create a Scanner to read user input.
+        Scanner input = new Scanner(System.in);
+
+        // Create a formatter to display amounts as currency.
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+
+        // Ask the user for the loan amount.
+        System.out.print("Enter the loan amount: ");
+        double amount = input.nextDouble();
+
+        // Ask the user for the repayment period.
+        System.out.print("Enter the number of months for repayment: ");
+        int months = input.nextInt();
+
+        // Create the interest rate calculator.
+        InterestRateCalculator calculator = new InterestRateCalculator();
+
+        // Calculate the monthly payment.
+        double monthlyPayment =
+                calculator.calculateMonthlyPayment(amount, months);
+
+        // Calculate the total amount repaid.
+        double totalRepaid = monthlyPayment * months;
+
+        // Display the repayment summary.
+        System.out.println();
+        System.out.println("----- Loan Repayment Summary -----");
+        System.out.println("Original loan amount: "
+                + currency.format(amount));
+        System.out.printf("Monthly interest rate: %.2f%%%n",
+                InterestRateCalculator.RATE * 100);
+        System.out.println("Repayment period: " + months + " months");
+        System.out.println("Monthly payment: "
+                + currency.format(monthlyPayment));
+        System.out.println("Total amount repaid: "
+                + currency.format(totalRepaid));
+
+        // Close the Scanner.
+        input.close();
+    }
+}
+
+/**
+ * Calculates monthly loan repayments
+ * The calculation details are kept inside this class
+ */
+class InterestRateCalculator {
+
+    // Public constant for the monthly interest rate of 3.5%.
+    public static final double RATE = 0.035;
+
+    /**
+     * Calculates the monthly payment, including interest
+     *
+     * @param amount the original loan amount
+     * @param months the repayment period in months
+     * @return the monthly payment including interest
+     */
+    public double calculateMonthlyPayment(double amount, int months) {
+
+        // Validate the input values.
+        if (amount <= 0 || months <= 0) {
+            throw new IllegalArgumentException(
+                    "The amount and number of months must be greater than zero."
+            );
+        }
+
+        // Divide the original loan amount by the number of months
+        double monthlyPrincipal = amount / months;
+
+        // Calculate monthly interest on the original loan amount
+        double monthlyInterest = amount * RATE;
+
+        // Add interest to the monthly principal repayment
+        double monthlyPayment = monthlyPrincipal + monthlyInterest;
+
+        // Return the monthly payment
+        return monthlyPayment;
+    }
+}
