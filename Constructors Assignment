@@ -1,0 +1,98 @@
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package constructors_assignment;
+
+/**
+ *
+ * @author sweyer2027
+ */
+
+// Course class
+class Course {
+
+    private String courseTitle;
+    private String courseCode;
+    private int pointsTotal;
+    private String instructorName;
+
+    public Course(String courseTitle, String courseCode, int pointsTotal, String instructorName) {
+        this.courseTitle = courseTitle;
+        this.courseCode = courseCode;
+        this.pointsTotal = pointsTotal;
+        this.instructorName = instructorName;
+    }
+
+    public Course(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public int getPointsTotal() {
+        return pointsTotal;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public void setPointsTotal(int pointsTotal) {
+        this.pointsTotal = pointsTotal;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
+    }
+
+    public String toString() {
+        return "Course Title: " + courseTitle
+                + "\nCourse Code: " + courseCode
+                + "\nPoints Total: " + pointsTotal
+                + "\nInstructor: " + instructorName;
+    }
+}
+
+public class Constructors_Assignment {
+
+    public static void main(String[] args) {
+
+        Course course1 = new Course("STEAM", "AP Computer Science A", 97, "Mr. Nelson");
+
+        Course course2 = new Course("Math");
+        course2.setCourseCode("AP Stats");
+        course2.setPointsTotal(96);
+        course2.setInstructorName("Mr. Remiker");
+
+        Course course3 = new Course("English ", "AP Lit", 6, "Mrs. Carlson");
+        course3.setPointsTotal(93);
+        course3.setInstructorName("Mrs. Carlson");
+
+        System.out.println("COURSE 1");
+        System.out.println(course1);
+
+        System.out.println("\nCOURSE 2");
+        System.out.println(course2);
+
+        System.out.println("\nCOURSE 3");
+        System.out.println(course3);
+     
+        
+      System.out.println("\nAverage Grade: " +
+    Math.round((course1.getPointsTotal()
+    + course2.getPointsTotal()
+    + course3.getPointsTotal()) / 3.0) + "%");
+    }
+}
