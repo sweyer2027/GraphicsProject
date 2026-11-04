@@ -1,0 +1,107 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package shoppinglist;
+import java.util.*;
+import java.util.Scanner;
+/**
+ *
+ * @author sweyer2027
+ */
+public class ShoppingList {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner Scan = new Scanner(System.in);
+        String n = "n";
+        String item = " ";
+        ArrayList <Item> List = new ArrayList<Item>();
+
+        // 8 Store items and prices
+        String[] storeItems = {"Carrots", "Bread", "Corn", "Milk", "Eggs", "Apples", "Chicken", "Rice"};
+        double[] storePrices = {1.50, 2.99, 0.99, 3.49, 2.50, 1.25, 6.99, 4.00};
+
+        System.out.println(" STORE ITEMS ");
+        for (int i = 0; i < storeItems.length; i++) {
+            System.out.println((i + 1) + ". " + storeItems[i] + " - $" + storePrices[i]);
+        }
+
+        System.out.print("\nHow many different items would you like to buy? ");
+        int count = getValidInt(Scan);
+
+        for (int i = 0; i < count; i++) {
+            System.out.print("Enter item number (1-8): ");
+            int itemNum = getValidInt(Scan) - 1;
+
+            // Prevent array out of bounds crash
+            while (itemNum < 0 || itemNum >= storeItems.length) {
+                System.out.print("Invalid choice. Enter item number (1-8): ");
+                itemNum = getValidInt(Scan) - 1;
+            }
+
+            System.out.print("Enter quantity: ");
+            int qty = getValidInt(Scan);
+
+            item = storeItems[itemNum] + " (x" + qty + ")";
+            double itemTotal = storePrices[itemNum] * qty;
+
+            List.add(new Item(item, itemTotal));
+        }
+
+        printList(List);
+
+        if (!List.isEmpty()) {
+            System.out.print("\nRemove an item? (y/n): ");
+            n = Scan.nextLine().trim();
+
+            if (n.equalsIgnoreCase("y")) {
+                System.out.print("Enter item number to remove: ");
+                int removeIndex = getValidInt(Scan) - 1;
+
+                if (removeIndex >= 0 && removeIndex < List.size()) {
+                    List.remove(removeIndex);
+                } else {
+                    System.out.println("Invalid item number.");
+                }
+
+                System.out.println("\n UPDATED LIST ");
+                printList(List);
+            }
+        }
+    }
+
+    // Helper to safely read numbers without crashing
+    static int getValidInt(Scanner scan) {
+        while (true) {
+            try {
+                return Integer.parseInt(scan.nextLine().trim());
+            } catch (Exception e) {
+                System.out.print("Invalid input. Please enter a valid number: ");
+            }
+        }
+    }
+
+    static void printList(ArrayList<Item> list) {
+        System.out.println("\n YOUR SHOPPING LIST ");
+        double total = 0;
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i).name + " - $" + list.get(i).price);
+            total += list.get(i).price;
+        }
+        System.out.printf("Total Cost: $%.2f%n", total);
+    }
+}
+
+class Item {
+    String name;
+    double price;
+
+    Item(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+}
