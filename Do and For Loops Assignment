@@ -1,0 +1,94 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package loopsassignment;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class LoopsAssignment {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        final int MAX_ROWS = 10;
+
+        // Pattern a.
+        System.out.println("a.");
+        for (int row = MAX_ROWS; row >= 1; row--) {
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Pattern b.
+        System.out.println("b.");
+        for (int row = 1; row <= MAX_ROWS; row++) {
+            // Print leading spaces
+            for (int space = 1; space <= MAX_ROWS - row; space++) {
+                System.out.print(" ");
+            }
+            // Print stars
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Pattern c.
+        System.out.println("c.");
+        for (int row = MAX_ROWS; row >= 1; row--) {
+            // Print leading spaces
+            for (int space = 1; space <= MAX_ROWS - row; space++) {
+                System.out.print(" ");
+            }
+            // Print stars
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+            // Pattern d.
+    
+        System.out.println("d.");
+        
+        // Top Half of Diamond (Rows 1 to 5)
+        for (int row = 1; row <= 5; row++) {
+            // Leading spaces (5 - row)
+            for (int space = 1; space <= 5 - row; space++) {
+                System.out.print(" ");
+            }
+        
+            for (int star = 1; star <= (2 * row - 1); star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Bottom Half of Diamond (Rows 5 down to 1)
+        for (int row = 5; row >= 1; row--) {
+            // Leading spaces (5 - row)
+            for (int space = 1; space <= 5 - row; space++) {
+                System.out.print(" ");
+            }
+            
+            for (int star = 1; star <= (2 * row - 1); star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+}
+}
+}
+
+
+
+     
+          
