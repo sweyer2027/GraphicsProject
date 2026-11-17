@@ -1,0 +1,92 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package poople;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author sweyer2027
+ */
+public class Poople {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // 1. Simple list of valid 4-letter English words
+        String[] words = {
+            "POOP", "LOOP", "COOP", "HOOP", "POOL", "POOR", "COOK", "BOOK", 
+            "LOOK", "TOOK", "HOOK", "COOL", "FOOL", "TOOL", "WOOL", "DOOR", 
+            "BOOT", "FOOT", "HOOT", "LOOT", "ROOT", "BOAT", "COAT", "GOAT", 
+            "HEAT", "MEAT", "SEAT", "BEAR", "FEAR", "GEAR", "HEAR", "NEAR", 
+            "HEAD", "LEAD", "READ", "ROAD", "LOAD", "COLD", "GOLD", "HOLD", 
+            "SOLD", "TOLD", "WORD", "WORK", "FORK", "PORK", "CORN", "HORN"
+        };
+
+        Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
+
+        // 2. Pick a random starting word (make sure it's not already POOP)
+        String currentWord = "POOP";
+        while (currentWord.equals("POOP")) {
+            int randomIndex = rand.nextInt(words.length);
+            currentWord = words[randomIndex];
+        }
+
+        int guesses = 0;
+
+        System.out.println("Change 1 letter at a time to spell POOP!");
+        System.out.println("Starting word: " + currentWord);
+
+        // 3. Keep looping until the word becomes POOP
+        while (!currentWord.equals("POOP")) {
+            System.out.print("\nEnter your next word: ");
+            String guess = scanner.nextLine().toUpperCase();
+
+            // Check 1: Is it 4 letters long?
+            if (guess.length() != 4) {
+                System.out.println("Nope! Must be 4 letters.");
+                continue;
+            }
+
+            // Check 2: Is it in our word list?
+            boolean isRealWord = false;
+            for (int i = 0; i < words.length; i++) {
+                if (words[i].equals(guess)) {
+                    isRealWord = true;
+                    break;
+                }
+            }
+
+            if (!isRealWord) {
+                System.out.println("Nope! Not a valid word in the dictionary.");
+                continue;
+            }
+
+            // Check 3: Did they only change ONE letter?
+            int differentLetters = 0;
+            for (int i = 0; i < 4; i++) {
+                if (currentWord.charAt(i) != guess.charAt(i)) {
+                    differentLetters++;
+                }
+            }
+
+            if (differentLetters != 1) {
+                System.out.println("NO! You can only change ONE letter.");
+                continue;
+            }
+
+            // If it passes all 3 checks, update the word!
+            currentWord = guess;
+            guesses++;
+            System.out.println("Nice! Current word: " + currentWord);
+        }
+
+        System.out.println("\nYOU WIN! You spelled POOP in " + guesses + " guesses!");
+    }
+    
+}
